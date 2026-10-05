@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Python
+__pycache__/
+*/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+
+# Testing & Cache
+.pytest_cache/
+*/.pytest_cache/
+.coverage
+htmlcov/
+
+# Build outputs
+dist/
+*/dist/
+build/
+*/build/
+
+# Environment and sensitive credentials
+.env
+.env.local
+*.env
+
+# IDE and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
