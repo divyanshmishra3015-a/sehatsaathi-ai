@@ -1,5 +1,5 @@
 """
-SehatSaathi AI - Healthcare Facilities Database
+JanSwasthya Setu AI - Healthcare Facilities Database
 Verified and demonstration directory of rural healthcare centers across Indian districts:
 Primary Health Centres (PHC), Community Health Centres (CHC), Sub-Centres (SC), and District Hospitals.
 """

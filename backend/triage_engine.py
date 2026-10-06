@@ -1,5 +1,5 @@
 """
-SehatSaathi AI - Clinical Rule-Based Triage Engine
+JanSwasthya Setu AI - Clinical Rule-Based Triage Engine
 Designed for conservative, safety-first healthcare triage in rural & tier-3/4 India.
 
 IMPORTANT MEDICAL SAFETY NOTICE:

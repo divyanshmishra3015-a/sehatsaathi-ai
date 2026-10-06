@@ -1,8 +1,8 @@
 """
-SehatSaathi AI - FastAPI Application
-The AI-Powered Voice-First Healthcare Assistance Platform for Rural India.
+JanSwasthya Setu AI - FastAPI Application
+The AI-Powered Voice-First Healthcare Assistance Platform for Rural Bharat.
 
-Tagline: "Your Health, Your Language, Your Saathi."
+Tagline: "Bridging Bharat to Intelligent Healthcare" / "जन-जन तक स्वास्थ्य का डिजिटल सेतु"
 """
 
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form, Query
@@ -18,9 +18,9 @@ from ai_service import generate_saathi_response, ChatRequest, ChatResponse
 import database as db
 
 app = FastAPI(
-    title="SehatSaathi AI Backend",
+    title="JanSwasthya Setu AI Backend",
     version="1.0.0",
-    description="Multilingual Voice-First Healthcare API for Rural India"
+    description="Multilingual Voice-First Healthcare & Triage API for Bharat"
 )
 
 # Enable CORS for frontend Vite development & local network access
@@ -35,8 +35,8 @@ app.add_middleware(
 @app.get("/")
 def root():
     return {
-        "project": "SehatSaathi AI",
-        "tagline": "Your Health, Your Language, Your Saathi",
+        "project": "JanSwasthya Setu AI",
+        "tagline": "Bridging Bharat to Intelligent Healthcare",
         "version": "1.0.0",
         "status": "online",
         "supported_languages": ["hi", "en"],

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
 import {
@@ -19,7 +19,7 @@ export const HealthHistory: React.FC = () => {
 
   const [history] = useState([
     {
-      id: 'SSA-20261005-44C9D3',
+      id: 'JSS-20261005-44C9D3',
       date: '2026-10-05 14:30',
       urgency: 'RED',
       symptoms: ['Chest Pain', 'Shortness of Breath'],
@@ -27,7 +27,7 @@ export const HealthHistory: React.FC = () => {
       facility: 'District Hospital Trauma ICU'
     },
     {
-      id: 'SSA-20261004-98A1B2',
+      id: 'JSS-20261004-98A1B2',
       date: '2026-10-04 10:15',
       urgency: 'YELLOW',
       symptoms: ['Fever (101°F)', 'Fatigue'],
@@ -35,7 +35,7 @@ export const HealthHistory: React.FC = () => {
       facility: 'PHC Cholapur'
     },
     {
-      id: 'SSA-20261001-11E2F5',
+      id: 'JSS-20261001-11E2F5',
       date: '2026-10-01 16:40',
       urgency: 'GREEN',
       symptoms: ['Mild Seasonal Cough'],
@@ -52,13 +52,13 @@ export const HealthHistory: React.FC = () => {
             {language === 'hi' ? 'स्वास्थ्य इतिहास एवं पूर्व जांच' : 'Health History & Past Assessments'}
           </h1>
           <p className="text-xs text-slate-500">
-            {language === 'hi' ? 'आपके द्वारा किए गए पूर्व ट्राइएज परीक्षण और परामर्श' : 'Chronological log of symptom assessments and triage evaluations'}
+            {language === 'hi' ? 'जनस्वास्थ्य सेतु द्वारा किए गए पूर्व ट्राइएज परीक्षण और परामर्श' : 'Chronological log of symptom assessments and triage evaluations'}
           </p>
         </div>
 
         <button
           onClick={() => window.print()}
-          className="no-print inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition"
+          className="no-print inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition cursor-pointer"
         >
           <Printer className="w-4 h-4" />
           <span>{language === 'hi' ? 'प्रिंट करें' : 'Print History'}</span>
@@ -90,7 +90,7 @@ export const HealthHistory: React.FC = () => {
                 >
                   {item.urgency}
                 </span>
-                <span className="font-mono text-xs text-slate-500 font-semibold">{item.id}</span>
+                <span className="font-mono text-xs text-slate-600 font-bold">{item.id}</span>
               </div>
               <span className="text-xs text-slate-500 flex items-center gap-1">
                 <Clock className="w-3.5 h-3.5" />

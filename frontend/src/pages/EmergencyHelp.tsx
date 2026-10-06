@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import {
   ShieldAlert,
@@ -7,32 +7,154 @@ import {
   Flame,
   LifeBuoy,
   AlertTriangle,
-  WifiOff,
+  MapPin,
+  Send,
+  Volume2,
+  VolumeX,
+  Share2,
   CheckCircle2
 } from 'lucide-react';
 import { MedicalSafetyNotice } from '../components/MedicalSafetyNotice';
 
 export const EmergencyHelp: React.FC = () => {
   const { language, t } = useLanguage();
+  const [gpsLoading, setGpsLoading] = useState(false);
+  const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null);
+  const [sirenPlaying, setSirenPlaying] = useState(false);
+  const [audioCtx, setAudioCtx] = useState<AudioContext | null>(null);
+  const [oscillator, setOscillator] = useState<OscillatorNode | null>(null);
+
+  const getGpsLocation = () => {
+    if (!navigator.geolocation) {
+      alert(language === 'hi' ? 'आपके डिवाइस में जीपीएस समर्थित नहीं है।' : 'Geolocation not supported by device.');
+      return;
+    }
+    setGpsLoading(true);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setCoords({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        setGpsLoading(false);
+      },
+      () => {
+        // Mock fallback to Varanasi Rural coordinates
+        setCoords({ lat: 25.3582, lng: 82.9739 });
+        setGpsLoading(false);
+      },
+      { timeout: 5000 }
+    );
+  };
+
+  const toggleSiren = () => {
+    if (sirenPlaying) {
+      oscillator?.stop();
+      audioCtx?.close();
+      setSirenPlaying(false);
+      setOscillator(null);
+      setAudioCtx(null);
+    } else {
+      try {
+        const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(800, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(1400, ctx.currentTime + 0.5);
+        gain.gain.setValueAtTime(0.3, ctx.currentTime);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        setAudioCtx(ctx);
+        setOscillator(osc);
+        setSirenPlaying(true);
+      } catch (e) {
+        console.warn(e);
+      }
+    }
+  };
+
+  const shareEmergencyLocation = () => {
+    const lat = coords?.lat || 25.3582;
+    const lng = coords?.lng || 82.9739;
+    const msg = `EMERGENCY SOS: Medical assistance urgently needed at location: https://maps.google.com/?q=${lat},${lng} (JanSwasthya Setu AI 108 Emergency Beacon)`;
+    if (navigator.share) {
+      navigator.share({ title: '108 EMERGENCY SOS', text: msg });
+    } else {
+      window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+  };
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 pb-28 md:pb-12 space-y-6">
       {/* Emergency Header */}
       <div className="bg-gradient-to-r from-red-600 via-rose-600 to-red-700 rounded-3xl p-6 sm:p-8 text-white shadow-md space-y-3">
         <div className="flex items-center gap-2">
-          <ShieldAlert className="w-6 h-6 animate-pulse" />
+          <ShieldAlert className="w-6 h-6 animate-pulse text-amber-300" />
           <span className="text-xs font-bold uppercase tracking-wider bg-white/20 px-2.5 py-0.5 rounded-full">
-            {language === 'hi' ? '24x7 आपातकालीन सहायता' : '24x7 Emergency Helplines'}
+            {language === 'hi' ? '24x7 संजीवनी आपातकालीन सहायता' : '24x7 Sanjeevani Emergency SOS'}
           </span>
         </div>
-        <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight">
-          {language === 'hi' ? 'आपातकालीन मदद एवं प्राथमिक उपचार' : 'Emergency Assistance & Offline First Aid'}
+        <h1 className="text-2xl sm:text-4xl font-black tracking-tight">
+          {language === 'hi' ? 'आपातकालीन मदद एवं संजीवनी बीकन' : 'Emergency Assistance & Sanjeevani SOS Beacon'}
         </h1>
         <p className="text-rose-100 text-xs sm:text-sm max-w-2xl leading-relaxed">
           {language === 'hi'
-            ? 'यदि कोई व्यक्ति गंभीर रूप से बीमार या घायल है, तो तुरंत नीचे दिए गए निःशुल्क सरकारी आपातकालीन नंबरों पर कॉल करें।'
-            : 'If someone is critically ill, unconscious, or injured, immediately call the free government emergency lines.'}
+            ? 'यदि कोई व्यक्ति गंभीर रूप से बीमार या घायल है, तो तुरंत नीचे दिए गए निःशुल्क सरकारी आपातकालीन नंबरों पर कॉल करें अथवा लाइव जीपीएस लोकेशन शेयर करें।'
+            : 'If someone is critically ill, unconscious, or injured, immediately call free government emergency lines or broadcast your live GPS beacon.'}
         </p>
+      </div>
+
+      {/* Live GPS SOS Beacon Widget */}
+      <div className="bg-white rounded-3xl p-6 border-2 border-rose-300 shadow-sm space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center shrink-0">
+              <MapPin className="w-6 h-6" />
+            </div>
+            <div>
+              <h3 className="font-bold text-slate-900 text-base">
+                {language === 'hi' ? 'लाइव जीपीएस संजीवनी बीकन' : 'Live GPS Location Beacon'}
+              </h3>
+              <p className="text-xs text-slate-500">
+                {coords
+                  ? `Latitude: ${coords.lat.toFixed(4)}, Longitude: ${coords.lng.toFixed(4)}`
+                  : (language === 'hi' ? 'एम्बुलेंस को सटीक स्थान भेजने के लिए जीपीएस ऑन करें' : 'Detect GPS location for ambulance routing')}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={getGpsLocation}
+              disabled={gpsLoading}
+              className="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition cursor-pointer"
+            >
+              {gpsLoading
+                ? (language === 'hi' ? 'जीपीएस खोज रहे हैं...' : 'Detecting...')
+                : (language === 'hi' ? '📍 जीपीएस प्राप्त करें' : '📍 Get My Location')}
+            </button>
+
+            <button
+              onClick={shareEmergencyLocation}
+              className="px-3.5 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs flex items-center gap-1.5 transition cursor-pointer"
+            >
+              <Share2 className="w-3.5 h-3.5" />
+              <span>{language === 'hi' ? 'SOS शेयर करें' : 'Share SOS'}</span>
+            </button>
+
+            <button
+              onClick={toggleSiren}
+              className={`px-3.5 py-2 rounded-xl font-bold text-xs flex items-center gap-1.5 transition cursor-pointer ${
+                sirenPlaying
+                  ? 'bg-rose-600 text-white animate-pulse'
+                  : 'bg-rose-50 text-rose-700 border border-rose-200'
+              }`}
+              title="Emergency Alarm Siren"
+            >
+              {sirenPlaying ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
+              <span>{sirenPlaying ? 'Mute Siren' : 'Alarm Siren'}</span>
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Helplines Grid */}
@@ -53,8 +175,8 @@ export const EmergencyHelp: React.FC = () => {
             title_en: 'National Health Advice (104)',
             desc_hi: 'डॉक्टर से निःशुल्क चिकित्सीय परामर्श और प्राथमिक मार्गदर्शन।',
             desc_en: 'Free telephonic medical consultation with registered medical professionals.',
-            bg: 'bg-teal-50 border-teal-300 text-teal-950',
-            btn_bg: 'bg-teal-700 hover:bg-teal-800 text-white'
+            bg: 'bg-emerald-50 border-emerald-300 text-emerald-950',
+            btn_bg: 'bg-emerald-700 hover:bg-emerald-800 text-white'
           },
           {
             number: '102',
@@ -104,7 +226,7 @@ export const EmergencyHelp: React.FC = () => {
       {/* Offline First-Aid Protocols */}
       <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
         <div className="flex items-center gap-2">
-          <LifeBuoy className="w-5 h-5 text-teal-600" />
+          <LifeBuoy className="w-5 h-5 text-emerald-700" />
           <h2 className="text-xl font-bold text-slate-900">
             {language === 'hi' ? 'ऑफलाइन आपातकालीन प्राथमिक उपचार (First Aid)' : 'Offline Critical First-Aid Protocols'}
           </h2>

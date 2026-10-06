@@ -1,59 +1,61 @@
-# SehatSaathi AI (सेहत साथी AI) 🩺🇮🇳
-> **"Your Health, Your Language, Your Saathi"**  
-> *आपकी सेहत, आपकी भाषा, आपका साथी*
+# JanSwasthya Setu AI (जनस्वास्थ्य सेतु AI) 🩺🇮🇳
+> **"Bridging Bharat to Intelligent Healthcare"**  
+> *जन-जन तक स्वास्थ्य का डिजिटल सेतु*
 
-[![FastAPI](https://img.shields.io/badge/FastAPI-1.0.0-009688?style=flat&logo=fastapi)](https://fastapi.tiangolo.com)
+[![FastAPI](https://img.shields.io/badge/FastAPI-1.0.0-047857?style=flat&logo=fastapi)](https://fastapi.tiangolo.com)
 [![React](https://img.shields.io/badge/React-19.2-61DAFB?style=flat&logo=react)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org)
 [![Vite](https://img.shields.io/badge/Vite-8.3-646CFF?style=flat&logo=vite)](https://vite.dev)
-[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.3-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.3-047857?style=flat&logo=tailwind-css)](https://tailwindcss.com)
+[![Deployment](https://img.shields.io/badge/Deploy-Vercel%20%7C%20Render%20%7C%20Localhost-success)](https://vercel.com)
 
 ---
 
 ## 📖 Overview
 
-**SehatSaathi AI** is an AI-powered, multilingual, voice-first healthcare assistance and navigation platform purpose-built for rural and semi-urban communities in India. It bridges the critical healthcare access gap caused by geographical isolation, low health literacy, and vernacular language barriers.
+**JanSwasthya Setu AI (जनस्वास्थ्य सेतु AI)** is a voice-first, multilingual healthcare triage and navigation platform purpose-engineered for rural and semi-urban communities across Bharat (Tier-2/3/4 towns and villages). It builds a digital bridge across geographical distances, low digital literacy, and vernacular language barriers.
 
-By combining voice AI in native languages with clinical triage protocols, simplified medical report explanations, geo-aware public healthcare facility locator, and dedicated workflows for frontline **ASHA (Accredited Social Health Activist)** workers, SehatSaathi AI empowers citizens to seek timely care while reducing preventable complications.
+By combining voice AI in Hindi and English with clinical triage protocols, simplified pathology lab report explanations, geo-aware public healthcare facility locators, digital ABHA health ID generation, and dedicated workflows for frontline **ASHA (Accredited Social Health Activist)** workers, JanSwasthya Setu AI empowers citizens to seek timely care while reducing preventable clinical complications.
 
 ---
 
-## 🌟 Key Features
+## 🌟 Unique Architecture & Zero-Break Deployment
 
-### 1. 🎙️ Voice-First Multilingual AI Saathi
-- Seamless **bi-directional voice interaction** in Hindi and English powered by Web Speech API.
-- Converts complex medical jargon into warm, conversational, culturally sensitive health guidance.
-- Instant **Emergency Red-Flag Escalation**: Automatically detects critical symptoms (severe chest pain, stroke signs, acute breathlessness) and directs users to dial **108** for emergency medical services.
+### ⚡ Dual-Mode Hybrid Intelligence
+JanSwasthya Setu AI features an intelligent dual-mode client:
+- **Connected / Backend Mode:** When the FastAPI server runs (on `http://localhost:8000` or deployed to Render/Railway), API requests are processed through FastAPI and SQLite.
+- **Embedded Client-Side Intelligence Core:** When deployed as a static site (on Vercel, Netlify, GitHub Pages, or offline in rural clinics), the built-in browser engine automatically handles clinical symptom triage, conversational AI guidance, verified facility directory calculations, lab report biomarker decoding, and local storage patient registers.
+- **Result:** The web application **works 100% seamlessly anywhere**, both on localhost and live deployments, with zero missing screens or broken endpoints!
 
-### 2. 🚦 Clinical Symptom Triage Engine
-- Interactive symptom assessment based on established triage protocols.
-- Categorizes urgency into standardized triage levels:
-  - 🔴 **Red (Emergency)**: Immediate hospital/trauma center transfer.
-  - 🟡 **Yellow (Urgent)**: Examination at a Primary Health Centre (PHC) or Community Health Centre (CHC) within 24-48 hours.
-  - 🟢 **Green (Routine/Home Care)**: Safe home remedies, hydration, and monitoring.
-- Special risk weighting for vulnerable groups (infants, pregnant mothers, and the elderly).
+---
 
-### 3. 📄 Vernacular Medical Report Explainer
-- Demystifies laboratory test results (Complete Blood Count, Lipid Panel, Blood Glucose, Urine Routine).
-- Highlights abnormal biomarkers with clear indicators (`NORMAL`, `LOW`, `HIGH`).
-- Explains findings in everyday language with actionable dietary and follow-up guidance.
+## 🚀 The 3-Portal "Setu" Architecture
 
-### 4. 🗺️ Geo-Enabled Public Health Facility Finder
-- Interactive map powered by Leaflet to locate nearby government and public healthcare centers:
-  - **Ayushman Arogya Mandir** (Health & Wellness Sub-Centres)
-  - **Primary Health Centres (PHCs)**
-  - **Community Health Centres (CHCs)**
-  - **Sub-District & District Hospitals**
-- Displays operating hours, available beds, verified services, and direct contact numbers.
+1. **🏛️ Citizen Care Setu (नागरिक स्वास्थ्य सेतु):**
+   - Natural voice and text healthcare assistant in Hindi & English.
+   - Tri-color clinical symptom assessment (Emergency 🔴, Urgent PHC Visit 🟡, Supportive Home Care 🟢).
+   - Vernacular pathology report explainer for CBC, Blood Sugar, and Lipid profiles.
+   - Interactive Digital ABHA (Ayushman Bharat Health Account) card generator.
+   - PM Jan Aushadhi generic medicine savings comparator (up to 80% savings).
 
-### 5. 👩‍⚕️ ASHA Worker Field Portal
-- Digital patient roster with search and filtering by village and risk level.
-- Automated reminders for Antenatal Care (ANC) checkups, immunizations, and chronic disease follow-ups.
-- Designed for low-connectivity environments with responsive, mobile-first layouts.
+2. **🩺 ASHA Field Setu (आशा सेतु साथी):**
+   - Roster of rural patients with high-risk pregnancy (ANC) filters and risk badges.
+   - Automated immunization and chronic disease follow-up reminders.
+   - Offline-capable local registry designed for low-connectivity field environments.
 
-### 6. 📊 Public Health Analytics & Surveillance
-- Real-time community health metrics and syndromic trend monitoring for district health officers.
-- Visual breakdowns of symptom prevalence, high-risk cases, and facility utilization.
+3. **📊 District Health Surveillance (जिला स्वास्थ्य निगरानी):**
+   - Real-time syndromic outbreak monitoring for Chief Medical Officers (CMO).
+   - Fever and respiratory symptom cluster tracking.
+   - Public health facility bed and resource utilization metrics.
+
+---
+
+## 🚨 Sanjeevani Emergency SOS Beacon
+
+- **Live GPS Broadcast:** Instantly detects device latitude and longitude for emergency ambulance dispatch.
+- **1-Click SOS Alert:** Generates pre-formatted emergency SMS/WhatsApp messages with a live Google Maps location link.
+- **Emergency Sirens & Direct Helplines:** 1-tap calling for **108** (Ambulance), **104** (Health Advice), **102** (Mother & Child), and **112** (All Emergency).
+- **Offline First-Aid Guides:** Life-saving protocols for severe bleeding, burns, and snake bites cached locally.
 
 ---
 
@@ -62,55 +64,72 @@ By combining voice AI in native languages with clinical triage protocols, simpli
 ### Frontend
 - **Framework:** React 19 + TypeScript
 - **Bundler & Dev Server:** Vite 8
-- **Styling:** Tailwind CSS v4
+- **Styling:** Tailwind CSS v4 (Emerald & Saffron Indian Public Health Theme)
 - **Icons:** Lucide React
 - **Mapping:** Leaflet & React-Leaflet
-- **Charts & Visualizations:** Recharts
+- **Visualizations:** Recharts
 - **Voice / Speech:** Browser Web Speech API (`SpeechRecognition` & `SpeechSynthesis`)
 
 ### Backend
-- **Framework:** FastAPI (Python 3.14+)
+- **Framework:** FastAPI (Python 3.10+)
 - **Server:** Uvicorn ASGI Server
 - **Data Validation:** Pydantic v2
 - **Testing:** Pytest + HTTPX
 
 ---
 
-## 🚀 Getting Started
+## 💻 Getting Started on Localhost
 
 ### Prerequisites
-- **Python 3.10+**
 - **Node.js 18+** & npm
+- **Python 3.10+**
 
-### Quick Start (Windows)
-Double-click the included script:
-- `start_localhost.bat` — Launches both Backend (port 8000) and Frontend (port 5173), and automatically opens your browser.
+### 1-Click Windows Launcher
+Double-click:
+- `start_localhost.bat` — Starts both Backend (Port 8000) and Frontend (Port 5173), and opens your browser.
 - `stop_localhost.bat` — Gracefully stops both servers.
 
 ### Manual Setup
 
-#### 1. Backend Setup
+#### 1. Backend
 ```bash
 cd backend
 pip install -r requirements.txt
 python -m uvicorn main:app --host 127.0.0.1 --port 8000 --reload
 ```
-*Backend runs at: [http://localhost:8000](http://localhost:8000)*  
-*Interactive Swagger docs: [http://localhost:8000/docs](http://localhost:8000/docs)*
+*Backend API docs: [http://localhost:8000/docs](http://localhost:8000/docs)*
 
-#### 2. Frontend Setup
+#### 2. Frontend
 ```bash
 cd frontend
 npm install
 npm run dev -- --host 127.0.0.1 --port 5173
 ```
-*Frontend runs at: [http://localhost:5173](http://localhost:5173)*
+*Frontend URL: [http://localhost:5173](http://localhost:5173)*
 
 ---
 
-## 🔒 Medical Disclaimer
+## 🌐 Deploying to Production
 
-> **Important:** SehatSaathi AI is an educational, preliminary triage, and navigation assistance tool. It does **not** provide formal medical diagnoses or replace professional consultation with a qualified, licensed medical doctor. In medical emergencies, always call **108** or go to the nearest emergency medical facility immediately.
+### Option A: Vercel (Frontend & Embedded Engine)
+1. Push this repository to GitHub.
+2. In Vercel, import the repository.
+3. The included `vercel.json` automatically configures Vite build (`frontend/dist`) and SPA routing.
+4. Deployment completes with full functionality!
+
+### Option B: Deploying Backend to Render / Railway
+1. Create a Web Service pointing to `backend/main.py`.
+2. Start command: `uvicorn main:app --host 0.0.0.0 --port $PORT`.
+3. In your Vercel frontend environment variables, set:
+   ```
+   VITE_API_BASE_URL=https://your-backend-service.onrender.com
+   ```
+
+---
+
+## 🔒 Medical Governance & Safety Disclaimer
+
+> **Important:** JanSwasthya Setu AI is an educational, preliminary clinical triage, and healthcare navigation assistance tool. It does **not** provide definitive medical diagnoses or replace professional evaluation by a licensed physician or Primary Health Centre Medical Officer. In medical emergencies, always call **108** or proceed immediately to the nearest hospital trauma center.
 
 ---
 

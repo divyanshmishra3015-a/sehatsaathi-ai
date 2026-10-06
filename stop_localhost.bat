@@ -1,7 +1,7 @@
 @echo off
-title SehatSaathi AI - Stop Local Servers
+title JanSwasthya Setu AI - Stop Local Servers
 echo ========================================================
-echo        Stopping SehatSaathi AI Localhost Servers
+echo        Stopping JanSwasthya Setu AI Localhost Servers
 echo ========================================================
 echo.
 
@@ -16,5 +16,5 @@ for /f "tokens=5" %%a in ('netstat -aon ^| findstr ":5173" ^| findstr "LISTENING
 )
 
 echo.
-echo Localhost servers have been stopped.
+echo JanSwasthya Setu AI localhost servers have been stopped.
 timeout /t 2 /nobreak >nul

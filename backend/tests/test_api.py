@@ -1,5 +1,5 @@
 """
-API integration tests for SehatSaathi AI backend
+API integration tests for JanSwasthya Setu AI backend
 """
 
 import sys
@@ -15,7 +15,7 @@ def test_root_status():
     response = client.get("/")
     assert response.status_code == 200
     data = response.json()
-    assert data["project"] == "SehatSaathi AI"
+    assert data["project"] == "JanSwasthya Setu AI"
     assert "disclaimer" in data
 
 def test_facilities_search():

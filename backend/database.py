@@ -1,5 +1,5 @@
 """
-SehatSaathi AI - In-Memory / SQLite Database and Persistence Layer
+JanSwasthya Setu AI - In-Memory / SQLite Database and Persistence Layer
 Includes pre-seeded realistic rural Indian health records for ASHA workers,
 patients, symptom assessments, follow-ups, and admin analytics.
 """

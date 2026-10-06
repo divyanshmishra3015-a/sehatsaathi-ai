@@ -1,5 +1,5 @@
 """
-Unit Tests for SehatSaathi AI Clinical Triage Engine
+Unit Tests for JanSwasthya Setu AI Clinical Triage Engine
 Validates red-flag safety escalations, conservative clinical triage paths, and bilingual generation.
 """
 

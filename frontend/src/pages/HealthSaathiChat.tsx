@@ -28,8 +28,8 @@ export const HealthSaathiChat: React.FC = () => {
       role: 'assistant',
       content:
         language === 'hi'
-          ? 'नमस्ते! मैं आपका सेहतसाथी (SehatSaathi AI) हूँ।\n\nआप मुझसे बोलकर या लिखकर अपने लक्षणों (जैसे बुखार, खांसी, सिरदर्द), जांच रिपोर्ट या घरेलू देखभाल के बारे में पूछ सकते हैं।\n\nआज आप या आपके परिवार में कैसा महसूस हो रहा है?'
-          : 'Namaste! I am SehatSaathi AI — your voice-first healthcare companion.\n\nYou can speak or type your symptoms, ask about lab results, or seek advice on when to visit your local PHC.\n\nHow may I help you today?',
+          ? 'नमस्ते! मैं आपका **जनस्वास्थ्य सेतु AI (JanSwasthya Setu AI)** साथी हूँ।\n\nआप मुझसे बोलकर या लिखकर अपने लक्षणों (जैसे बुखार, खांसी, बदन दर्द), खून की जांच रिपोर्ट या घरेलू देखभाल के बारे में पूछ सकते हैं।\n\nआज आप या आपके परिवार में कैसा महसूस हो रहा है?'
+          : 'Namaste! I am **JanSwasthya Setu AI** — your voice-first vernacular healthcare companion.\n\nYou can speak or type your symptoms, ask about lab results, maternal care, or seek advice on visiting your local PHC.\n\nHow may I help you today?',
       triage_urgency: 'GREEN',
       suggested_followups:
         language === 'hi'
@@ -109,7 +109,7 @@ export const HealthSaathiChat: React.FC = () => {
 
       setMessages((prev) => [...prev, botMessage]);
 
-      // Automatically speak the response for low digital literacy users if audio is enabled
+      // Automatically speak the response for low digital literacy users
       speak(response.reply, language);
     } catch (err) {
       const errorMsg: ChatMessage = {
@@ -145,18 +145,18 @@ export const HealthSaathiChat: React.FC = () => {
       {/* Header bar */}
       <div className="flex items-center justify-between bg-white rounded-2xl p-4 border border-slate-200 shadow-xs">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center shadow-xs">
-            <HeartPulse className="w-6 h-6" />
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 text-white flex items-center justify-center shadow-xs">
+            <HeartPulse className="w-6 h-6 text-emerald-100" />
           </div>
           <div>
             <h1 className="font-bold text-slate-900 text-lg sm:text-xl flex items-center gap-2">
-              <span>{language === 'hi' ? 'AI स्वास्थ्य साथी' : 'AI Health Saathi'}</span>
-              <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-teal-100 text-teal-800">
+              <span>{language === 'hi' ? 'जनस्वास्थ्य सेतु AI वॉइस साथी' : 'JanSwasthya Setu Voice AI'}</span>
+              <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
                 Voice First
               </span>
             </h1>
             <p className="text-xs text-slate-500">
-              {language === 'hi' ? 'बोलकर या लिखकर हिंदी में स्वास्थ्य सलाह लें' : 'Voice-enabled rural health guidance'}
+              {language === 'hi' ? 'अपनी भाषा में बोलकर या लिखकर स्वास्थ्य परामर्श लें' : 'Voice-enabled rural health guidance'}
             </p>
           </div>
         </div>
@@ -165,7 +165,7 @@ export const HealthSaathiChat: React.FC = () => {
           {isSpeaking && (
             <button
               onClick={stop}
-              className="px-2.5 py-1.5 rounded-lg bg-rose-50 text-rose-700 text-xs font-semibold flex items-center gap-1 border border-rose-200 animate-pulse"
+              className="px-2.5 py-1.5 rounded-lg bg-rose-50 text-rose-700 text-xs font-semibold flex items-center gap-1 border border-rose-200 animate-pulse cursor-pointer"
               title="Stop Audio"
             >
               <VolumeX className="w-4 h-4" />
@@ -175,7 +175,7 @@ export const HealthSaathiChat: React.FC = () => {
 
           <button
             onClick={handlePrintSlip}
-            className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold flex items-center gap-1 transition"
+            className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold flex items-center gap-1 transition cursor-pointer"
             title="Download Summary Slip"
           >
             <FileDown className="w-4 h-4" />
@@ -198,7 +198,7 @@ export const HealthSaathiChat: React.FC = () => {
               <div
                 className={`max-w-[88%] sm:max-w-[80%] rounded-3xl p-4 sm:p-5 shadow-xs ${
                   isUser
-                    ? 'bg-teal-700 text-white rounded-br-xs'
+                    ? 'bg-gradient-to-r from-emerald-700 to-teal-700 text-white rounded-br-xs'
                     : isEmergency
                     ? 'bg-rose-50 border-2 border-rose-400 text-slate-900 rounded-bl-xs'
                     : 'bg-slate-100 text-slate-900 rounded-bl-xs border border-slate-200/80'
@@ -251,7 +251,7 @@ export const HealthSaathiChat: React.FC = () => {
                   <div className="mt-3 pt-2 flex items-center justify-between border-t border-slate-200/60 text-xs">
                     <button
                       onClick={() => speak(msg.content, language)}
-                      className="inline-flex items-center gap-1 text-teal-800 hover:text-teal-950 font-semibold"
+                      className="inline-flex items-center gap-1 text-emerald-800 hover:text-emerald-950 font-semibold cursor-pointer"
                     >
                       <Volume2 className="w-3.5 h-3.5" />
                       <span>{t('read_aloud')}</span>
@@ -268,7 +268,7 @@ export const HealthSaathiChat: React.FC = () => {
                     <button
                       key={idx}
                       onClick={() => handleSend(suggestion)}
-                      className="text-xs font-medium px-3 py-1.5 rounded-full bg-slate-100 hover:bg-teal-50 hover:text-teal-800 border border-slate-200 text-slate-700 transition"
+                      className="text-xs font-medium px-3 py-1.5 rounded-full bg-slate-100 hover:bg-emerald-50 hover:text-emerald-800 border border-slate-200 text-slate-700 transition cursor-pointer"
                     >
                       💬 {suggestion}
                     </button>
@@ -281,10 +281,10 @@ export const HealthSaathiChat: React.FC = () => {
 
         {/* Loading Indicator */}
         {loading && (
-          <div className="flex items-center gap-3 p-4 rounded-2xl bg-teal-50 border border-teal-100 max-w-sm text-teal-800">
-            <RefreshCw className="w-5 h-5 animate-spin text-teal-600" />
+          <div className="flex items-center gap-3 p-4 rounded-2xl bg-emerald-50 border border-emerald-100 max-w-sm text-emerald-800">
+            <RefreshCw className="w-5 h-5 animate-spin text-emerald-600" />
             <div className="text-xs font-semibold">
-              {language === 'hi' ? 'साथी विचार कर रहा है...' : 'Health Saathi is analyzing...'}
+              {language === 'hi' ? 'सेतु साथी विचार कर रहा है...' : 'Setu Saathi is analyzing...'}
             </div>
           </div>
         )}
@@ -294,14 +294,14 @@ export const HealthSaathiChat: React.FC = () => {
 
       {/* Voice Wave Animation when Recording */}
       {isListening && (
-        <div className="bg-teal-900 text-white p-3.5 rounded-2xl flex items-center justify-between shadow-md animate-pulse">
+        <div className="bg-emerald-900 text-white p-3.5 rounded-2xl flex items-center justify-between shadow-md animate-pulse">
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1 h-6">
-              <span className="voice-bar w-1 bg-emerald-400 rounded-full" />
-              <span className="voice-bar w-1 bg-emerald-300 rounded-full" />
-              <span className="voice-bar w-1 bg-emerald-200 rounded-full" />
-              <span className="voice-bar w-1 bg-emerald-400 rounded-full" />
-              <span className="voice-bar w-1 bg-emerald-300 rounded-full" />
+              <span className="w-1 h-3 bg-emerald-400 rounded-full animate-bounce" />
+              <span className="w-1 h-5 bg-emerald-300 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
+              <span className="w-1 h-4 bg-emerald-200 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
+              <span className="w-1 h-6 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }} />
+              <span className="w-1 h-3 bg-emerald-300 rounded-full animate-bounce" style={{ animationDelay: '0.05s' }} />
             </div>
             <span className="text-xs sm:text-sm font-semibold">
               {t('listening_now')}
@@ -309,7 +309,7 @@ export const HealthSaathiChat: React.FC = () => {
           </div>
           <button
             onClick={stopListening}
-            className="px-3 py-1 rounded-lg bg-rose-600 hover:bg-rose-700 text-xs font-bold transition"
+            className="px-3 py-1 rounded-lg bg-rose-600 hover:bg-rose-700 text-xs font-bold transition cursor-pointer"
           >
             {t('stop_recording')}
           </button>
@@ -321,10 +321,10 @@ export const HealthSaathiChat: React.FC = () => {
         {/* Large Touch Microphone */}
         <button
           onClick={toggleMic}
-          className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition active:scale-95 ${
+          className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition active:scale-95 cursor-pointer ${
             isListening
               ? 'bg-rose-600 text-white animate-bounce'
-              : 'bg-teal-600 hover:bg-teal-700 text-white shadow-sm'
+              : 'bg-emerald-700 hover:bg-emerald-800 text-white shadow-sm'
           }`}
           title={isListening ? 'Stop listening' : 'Start speaking'}
         >
@@ -340,14 +340,14 @@ export const HealthSaathiChat: React.FC = () => {
             if (e.key === 'Enter') handleSend();
           }}
           placeholder={isListening ? 'Listening...' : t('type_message_placeholder')}
-          className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm sm:text-base text-slate-800 focus:outline-hidden focus:ring-2 focus:ring-teal-500"
+          className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm sm:text-base text-slate-800 focus:outline-hidden focus:ring-2 focus:ring-emerald-600"
         />
 
         {/* Send Button */}
         <button
           onClick={() => handleSend()}
           disabled={!inputText.trim() || loading}
-          className="w-11 h-11 rounded-xl bg-slate-900 hover:bg-slate-800 disabled:opacity-40 text-white flex items-center justify-center shrink-0 transition"
+          className="w-11 h-11 rounded-xl bg-slate-900 hover:bg-slate-800 disabled:opacity-40 text-white flex items-center justify-center shrink-0 transition cursor-pointer"
           title="Send message"
         >
           <Send className="w-5 h-5" />

@@ -1,11 +1,11 @@
 {
-  "name": "SehatSaathi AI",
-  "short_name": "SehatSaathi",
+  "name": "JanSwasthya Setu AI",
+  "short_name": "JanSwasthya Setu",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0f766e",
-  "theme_color": "#0d9488",
-  "description": "Voice-First Multilingual Healthcare Platform for Rural India",
+  "background_color": "#064e3b",
+  "theme_color": "#047857",
+  "description": "Voice-First Multilingual Healthcare Platform for Rural Bharat and Tier-3/4 Cities",
   "icons": [
     {
       "src": "/icon-192.png",

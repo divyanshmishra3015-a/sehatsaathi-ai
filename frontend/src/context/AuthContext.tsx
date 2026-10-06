@@ -13,7 +13,7 @@ const DEMO_USERS: Record<UserRole, User> = {
   patient: {
     id: 'usr_pat_01',
     name: 'Sunita Devi',
-    email: 'sunita.devi@ruralhealth.org',
+    email: 'sunita.devi@janswasthya.org',
     role: 'patient',
     phone: '+91 98765 43210',
     village: 'Cholapur, Tola 2',
@@ -23,7 +23,7 @@ const DEMO_USERS: Record<UserRole, User> = {
   asha_worker: {
     id: 'usr_asha_01',
     name: 'Radha Maurya (ASHA)',
-    email: 'radha.asha@ruralhealth.org',
+    email: 'radha.asha@janswasthya.org',
     role: 'asha_worker',
     phone: '+91 94150 11223',
     village: 'Cholapur Cluster',
@@ -44,7 +44,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(() => {
-    const saved = localStorage.getItem('sehatsaathi_user');
+    const saved = localStorage.getItem('janswasthya_user') || localStorage.getItem('sehatsaathi_user');
     if (saved) {
       try {
         return JSON.parse(saved);
@@ -60,17 +60,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const loginAs = (newRole: UserRole) => {
     const user = DEMO_USERS[newRole];
     setCurrentUser(user);
-    localStorage.setItem('sehatsaathi_user', JSON.stringify(user));
+    localStorage.setItem('janswasthya_user', JSON.stringify(user));
   };
 
   const logout = () => {
     setCurrentUser(null);
+    localStorage.removeItem('janswasthya_user');
     localStorage.removeItem('sehatsaathi_user');
   };
 
   useEffect(() => {
     if (currentUser) {
-      localStorage.setItem('sehatsaathi_user', JSON.stringify(currentUser));
+      localStorage.setItem('janswasthya_user', JSON.stringify(currentUser));
     }
   }, [currentUser]);
 

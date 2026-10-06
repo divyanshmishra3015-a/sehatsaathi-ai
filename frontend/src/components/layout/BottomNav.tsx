@@ -16,13 +16,13 @@ export const BottomNav: React.FC = () => {
     {
       to: '/patient/assistant',
       icon: MessageSquarePlus,
-      label_hi: 'साथी AI',
-      label_en: 'Saathi AI'
+      label_hi: 'सेतु AI',
+      label_en: 'Setu AI'
     },
     {
       to: '/patient/assessment',
       icon: Activity,
-      label_hi: 'जांच',
+      label_hi: 'ट्राइएज',
       label_en: 'Triage'
     },
     {
@@ -40,7 +40,7 @@ export const BottomNav: React.FC = () => {
   ];
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-slate-200/90 py-1 px-2 shadow-lg">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-slate-200/90 py-1.5 px-2 shadow-lg">
       <div className="grid grid-cols-5 gap-1">
         {links.map((link) => {
           const Icon = link.icon;
@@ -49,15 +49,15 @@ export const BottomNav: React.FC = () => {
               key={link.to}
               to={link.to}
               className={({ isActive }) =>
-                `flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition duration-150 ${
+                `flex flex-col items-center justify-center py-1 px-1 rounded-xl transition duration-150 ${
                   isActive
-                    ? 'text-teal-700 font-bold bg-teal-50'
+                    ? 'text-emerald-700 font-bold bg-emerald-50'
                     : 'text-slate-500 hover:text-slate-800'
                 }`
               }
             >
               <Icon className="w-5 h-5 mb-0.5" />
-              <span className="text-[11px] leading-tight text-center">
+              <span className="text-[11px] font-semibold leading-tight text-center">
                 {language === 'hi' ? link.label_hi : link.label_en}
               </span>
             </NavLink>

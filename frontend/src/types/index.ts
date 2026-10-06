@@ -42,19 +42,22 @@ export interface TriageResult {
   emergency_contact: string;
   created_at: string;
   patient_summary_for_asha: {
-    token: string;
-    date: string;
+    token?: string;
+    date?: string;
     patient_name: string;
     age_group: string;
-    urgency: string;
+    urgency?: string;
+    triage_level?: string;
     duration_days: number;
-    main_symptoms: string[];
-    severity: string;
-    red_flags: string[];
+    main_symptoms?: string[];
+    symptoms?: string[];
+    severity?: string;
+    red_flags?: string[];
     vital_temp?: string;
     vital_spo2?: string;
-    recommended_facility: string;
-    asha_action_notes: string;
+    recommended_facility?: string;
+    facility_referral?: string;
+    asha_action_notes?: string;
   };
 }
 
@@ -76,7 +79,10 @@ export interface ReportAnalysis {
   report_type: string;
   patient_info: {
     name: string;
-    status: string;
+    status?: string;
+    age?: number;
+    gender?: string;
+    test_date?: string;
   };
   biomarkers: Biomarker[];
   summary_en: string;
@@ -118,11 +124,15 @@ export interface Patient {
   phone: string;
   abha_id: string;
   category: string;
-  last_visit: string;
+  last_visit?: string;
+  last_triage?: string;
+  last_assessment_id?: string;
+  risk_level?: string;
   triage_status: 'RED' | 'YELLOW' | 'GREEN';
   symptoms: string;
-  assigned_worker: string;
-  notes: string;
+  assigned_worker?: string;
+  assigned_asha?: string;
+  notes?: string;
 }
 
 export interface Reminder {
@@ -135,5 +145,5 @@ export interface Reminder {
   type: string;
   facility: string;
   completed: boolean;
-  urgency: 'high' | 'medium' | 'normal';
+  urgency: 'high' | 'medium' | 'normal' | 'low';
 }

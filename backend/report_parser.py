@@ -1,5 +1,5 @@
 """
-SehatSaathi AI - Medical Report Parser & Explainer
+JanSwasthya Setu AI - Medical Report Parser & Explainer
 Parses laboratory and pathology reports (CBC, Blood Sugar, Lipid Profile, etc.),
 extracts biomarkers, identifies out-of-range values, and explains results in simple Hindi & English.
 

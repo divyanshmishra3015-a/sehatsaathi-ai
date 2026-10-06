@@ -1,5 +1,5 @@
 """
-SehatSaathi AI - Conversational AI Healthcare Assistant Service
+JanSwasthya Setu AI - Conversational AI Healthcare Assistant Service
 Features:
 - Explicit Red-Flag screening layer before LLM processing
 - Conservative triage protocol
@@ -226,7 +226,7 @@ def generate_saathi_response(req: ChatRequest) -> ChatResponse:
     else:
         if is_hi:
             reply = (
-                "नमस्ते! मैं आपका **सेहतसाथी (SehatSaathi AI)** हूँ — आपका स्वास्थ्य साथी।\n\n"
+                "नमस्ते! मैं आपका **जनस्वास्थ्य सेतु AI (JanSwasthya Setu AI)** साथी हूँ — आपका स्वास्थ्य साथी।\n\n"
                 "मैं ग्रामीण और छोटे शहरों के नागरिकों को सरल भाषा में स्वास्थ्य मार्गदर्शन देने के लिए उपस्थित हूँ।\n"
                 "आप मुझसे बोलकर या लिखकर अपने लक्षणों (जैसे बुखार, खांसी, पेट दर्द), जांच रिपोर्ट या नजदीकी अस्पताल के बारे में पूछ सकते हैं।\n\n"
                 "कृपया बताएं, आज आप या आपके परिवार में कैसा महसूस हो रहा है?"
@@ -239,7 +239,7 @@ def generate_saathi_response(req: ChatRequest) -> ChatResponse:
             ]
         else:
             reply = (
-                "Namaste! I am **SehatSaathi AI** — Your personal health companion.\n\n"
+                "Namaste! I am **JanSwasthya Setu AI** — Your personal health companion.\n\n"
                 "I am designed to assist rural citizens and healthcare workers with voice-first health guidance, symptom triage, lab report explanations, and nearby hospital navigation.\n\n"
                 "You can ask me questions by speaking or typing. How may I support your health today?"
             )

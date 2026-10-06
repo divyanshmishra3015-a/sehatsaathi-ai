@@ -8,6 +8,10 @@ export const PrivacyPage: React.FC = () => {
   const [deleted, setDeleted] = useState(false);
 
   const handleClearLocalStorage = () => {
+    localStorage.removeItem('janswasthya_user');
+    localStorage.removeItem('janswasthya_lang');
+    localStorage.removeItem('janswasthya_patients');
+    localStorage.removeItem('janswasthya_reminders');
     localStorage.removeItem('sehatsaathi_user');
     localStorage.removeItem('sehatsaathi_lang');
     setDeleted(true);
@@ -20,7 +24,7 @@ export const PrivacyPage: React.FC = () => {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 pb-28 md:pb-12 space-y-6">
       <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-2">
         <div className="flex items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded-full bg-teal-100 text-teal-800 text-[11px] font-bold uppercase tracking-wider">
+          <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold uppercase tracking-wider">
             Data Governance & Ethics
           </span>
         </div>
@@ -35,17 +39,17 @@ export const PrivacyPage: React.FC = () => {
       <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6 text-sm text-slate-700 leading-relaxed">
         <section className="space-y-2">
           <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
-            <Lock className="w-4 h-4 text-teal-600" />
+            <Lock className="w-4 h-4 text-emerald-700" />
             <span>{language === 'hi' ? '1. न्यूनतम डेटा संग्रह सिद्धांत' : '1. Minimum Data Collection Principle'}</span>
           </h2>
           <p>
-            SehatSaathi AI collects only the clinical parameters strictly necessary to perform rule-based triage and generate a summary for your local ASHA worker. We do not sell, rent, or commercialize patient data under any circumstances.
+            JanSwasthya Setu AI collects only the clinical parameters strictly necessary to perform rule-based triage and generate a summary for your local ASHA worker. We do not sell, rent, or commercialize patient data under any circumstances.
           </p>
         </section>
 
         <section className="space-y-2">
           <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-teal-600" />
+            <ShieldCheck className="w-4 h-4 text-emerald-700" />
             <span>{language === 'hi' ? '2. सूचित सहमति (Informed Consent)' : '2. Informed Consent Requirement'}</span>
           </h2>
           <p>
@@ -55,7 +59,7 @@ export const PrivacyPage: React.FC = () => {
 
         <section className="space-y-2">
           <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
-            <AlertCircle className="w-4 h-4 text-teal-600" />
+            <AlertCircle className="w-4 h-4 text-emerald-700" />
             <span>{language === 'hi' ? '3. गोपनीयता एवं डि-आइडेंटिफिकेशन' : '3. De-identification in Analytics'}</span>
           </h2>
           <p>
@@ -76,7 +80,7 @@ export const PrivacyPage: React.FC = () => {
           <button
             onClick={handleClearLocalStorage}
             disabled={deleted}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 font-bold text-xs transition"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 font-bold text-xs transition cursor-pointer"
           >
             {deleted ? (
               <>

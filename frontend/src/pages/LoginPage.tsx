@@ -43,70 +43,70 @@ export const LoginPage: React.FC = () => {
 
   return (
     <div className="max-w-md mx-auto px-4 py-8 pb-28 md:pb-12 space-y-6">
-      {/* Brand Icon */}
+      {/* Brand Icon & Heading */}
       <div className="text-center space-y-2">
-        <div className="w-14 h-14 rounded-2xl bg-teal-600 text-white flex items-center justify-center mx-auto shadow-md">
-          <HeartPulse className="w-8 h-8" />
+        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-800 text-white flex items-center justify-center mx-auto shadow-md">
+          <HeartPulse className="w-8 h-8 text-emerald-100" />
         </div>
         <h1 className="text-2xl font-bold text-slate-900">
           {isRegister
-            ? (language === 'hi' ? 'सेहतसाथी में नया खाता बनाएं' : 'Join SehatSaathi AI')
-            : (language === 'hi' ? 'सेहतसाथी में प्रवेश करें' : 'Sign in to SehatSaathi AI')}
+            ? (language === 'hi' ? 'जनस्वास्थ्य सेतु में नया खाता बनाएं' : 'Join JanSwasthya Setu AI')
+            : (language === 'hi' ? 'जनस्वास्थ्य सेतु में प्रवेश करें' : 'Sign in to JanSwasthya Setu AI')}
         </h1>
         <p className="text-xs text-slate-500">
-          {language === 'hi' ? 'आपका स्वास्थ्य, आपकी भाषा, आपका साथी' : 'Your Health, Your Language, Your Saathi'}
+          {language === 'hi' ? 'जन-जन तक स्वास्थ्य का डिजिटल सेतु' : 'Bridging Bharat to Intelligent Healthcare'}
         </p>
       </div>
 
-      {/* 1-Click Demo Login Badges (Immediate Hackathon Evaluation) */}
+      {/* 1-Click Fast Pass for Evaluators & Users */}
       <div className="bg-amber-50/90 border border-amber-200 rounded-3xl p-5 shadow-xs space-y-3">
         <div className="flex items-center justify-between">
           <span className="text-xs font-bold text-amber-900 uppercase tracking-wider">
-            ⚡ Quick 1-Click Demo Access
+            ⚡ Quick 1-Click Portal Switcher
           </span>
-          <span className="text-[11px] text-amber-700 font-semibold">Judge / Tester Fast Pass</span>
+          <span className="text-[11px] text-amber-700 font-semibold">Instant Access Pass</span>
         </div>
 
         <div className="space-y-2">
           <button
             onClick={() => handleDemoLogin('patient')}
-            className="w-full p-3 rounded-2xl bg-white hover:bg-teal-50 border border-amber-200 hover:border-teal-500 text-left transition flex items-center justify-between shadow-2xs group"
+            className="w-full p-3 rounded-2xl bg-white hover:bg-emerald-50 border border-amber-200 hover:border-emerald-500 text-left transition flex items-center justify-between shadow-2xs group cursor-pointer"
           >
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-xs">
+              <div className="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-xs">
                 👤
               </div>
               <div>
-                <div className="text-xs font-bold text-slate-900 group-hover:text-teal-900">
-                  Sunita Devi (Patient / ANC Citizen)
+                <div className="text-xs font-bold text-slate-900 group-hover:text-emerald-900">
+                  Sunita Devi (Citizen / Pregnant ANC)
                 </div>
-                <div className="text-[11px] text-slate-500">Full voice chat & triage experience</div>
+                <div className="text-[11px] text-slate-500">Voice AI chat, triage & ABHA card</div>
+              </div>
+            </div>
+            <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 group-hover:translate-x-1 transition" />
+          </button>
+
+          <button
+            onClick={() => handleDemoLogin('asha_worker')}
+            className="w-full p-3 rounded-2xl bg-white hover:bg-teal-50 border border-amber-200 hover:border-teal-500 text-left transition flex items-center justify-between shadow-2xs group cursor-pointer"
+          >
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-xs">
+                🩺
+              </div>
+              <div>
+                <div className="text-xs font-bold text-slate-900 group-hover:text-teal-900">
+                  Radha Maurya (ASHA Field Worker)
+                </div>
+                <div className="text-[11px] text-slate-500">Village register & priority triage desk</div>
               </div>
             </div>
             <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-teal-600 group-hover:translate-x-1 transition" />
           </button>
 
           <button
-            onClick={() => handleDemoLogin('asha_worker')}
-            className="w-full p-3 rounded-2xl bg-white hover:bg-purple-50 border border-amber-200 hover:border-purple-500 text-left transition flex items-center justify-between shadow-2xs group"
-          >
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-purple-100 text-purple-800 flex items-center justify-center font-bold text-xs">
-                🩺
-              </div>
-              <div>
-                <div className="text-xs font-bold text-slate-900 group-hover:text-purple-900">
-                  Radha Maurya (ASHA Worker)
-                </div>
-                <div className="text-[11px] text-slate-500">Patient registry & priority triage queue</div>
-              </div>
-            </div>
-            <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-purple-600 group-hover:translate-x-1 transition" />
-          </button>
-
-          <button
             onClick={() => handleDemoLogin('admin')}
-            className="w-full p-3 rounded-2xl bg-white hover:bg-indigo-50 border border-amber-200 hover:border-indigo-500 text-left transition flex items-center justify-between shadow-2xs group"
+            className="w-full p-3 rounded-2xl bg-white hover:bg-indigo-50 border border-amber-200 hover:border-indigo-500 text-left transition flex items-center justify-between shadow-2xs group cursor-pointer"
           >
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-xl bg-indigo-100 text-indigo-800 flex items-center justify-center font-bold text-xs">
@@ -114,9 +114,9 @@ export const LoginPage: React.FC = () => {
               </div>
               <div>
                 <div className="text-xs font-bold text-slate-900 group-hover:text-indigo-900">
-                  Dr. V. K. Sharma (CMO / Admin)
+                  Dr. V. K. Sharma (CMO / Health Officer)
                 </div>
-                <div className="text-[11px] text-slate-500">Aggregated cluster health analytics</div>
+                <div className="text-[11px] text-slate-500">District epidemic & syndromic surveillance</div>
               </div>
             </div>
             <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-1 transition" />
@@ -168,7 +168,7 @@ export const LoginPage: React.FC = () => {
 
           <button
             type="submit"
-            className="w-full py-3 rounded-xl bg-teal-700 hover:bg-teal-800 text-white font-bold text-sm shadow-md transition"
+            className="w-full py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm shadow-md transition cursor-pointer"
           >
             {isRegister
               ? (language === 'hi' ? 'खाता बनाएं' : 'Create Account')
