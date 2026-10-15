@@ -33,6 +33,8 @@ app.add_middleware(
 )
 
 @app.get("/")
+@app.get("/health")
+@app.get("/api/health")
 def root():
     return {
         "project": "JanSwasthya Setu AI",
