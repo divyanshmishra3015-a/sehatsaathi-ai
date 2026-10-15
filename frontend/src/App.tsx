@@ -73,7 +73,22 @@ export const App: React.FC = () => {
                 {/* 16. Emergency & Offline Help */}
                 <Route path="/help" element={<EmergencyHelp />} />
 
-                {/* Fallback */}
+                {/* Common Route Aliases & Deep-link Shortcuts */}
+                <Route path="/dashboard" element={<Navigate to="/patient/dashboard" replace />} />
+                <Route path="/chat" element={<Navigate to="/patient/assistant" replace />} />
+                <Route path="/assistant" element={<Navigate to="/patient/assistant" replace />} />
+                <Route path="/triage" element={<Navigate to="/patient/assessment" replace />} />
+                <Route path="/assessment" element={<Navigate to="/patient/assessment" replace />} />
+                <Route path="/reports" element={<Navigate to="/patient/reports" replace />} />
+                <Route path="/hospitals" element={<Navigate to="/facilities" replace />} />
+                <Route path="/hospital" element={<Navigate to="/facilities" replace />} />
+                <Route path="/history" element={<Navigate to="/patient/history" replace />} />
+                <Route path="/reminders" element={<Navigate to="/patient/reminders" replace />} />
+                <Route path="/asha" element={<Navigate to="/worker/dashboard" replace />} />
+                <Route path="/worker" element={<Navigate to="/worker/dashboard" replace />} />
+                <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
+
+                {/* Fallback to Home */}
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </main>
