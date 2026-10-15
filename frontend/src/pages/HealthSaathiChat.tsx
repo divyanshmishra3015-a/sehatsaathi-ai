@@ -284,7 +284,7 @@ export const HealthSaathiChat: React.FC = () => {
           <div className="flex items-center gap-3 p-4 rounded-2xl bg-emerald-50 border border-emerald-100 max-w-sm text-emerald-800">
             <RefreshCw className="w-5 h-5 animate-spin text-emerald-600" />
             <div className="text-xs font-semibold">
-              {language === 'hi' ? 'सेतु साथी विचार कर रहा है...' : 'Setu Saathi is analyzing...'}
+              {language === 'hi' ? 'जनस्वास्थ्य सेतु AI विचार कर रहा है...' : 'JanSwasthya Setu AI is analyzing...'}
             </div>
           </div>
         )}
