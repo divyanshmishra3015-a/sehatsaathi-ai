@@ -11,6 +11,19 @@ from typing import List, Optional, Dict, Any
 from datetime import datetime
 import uuid
 
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+_backend_dir = Path(__file__).resolve().parent
+_root_dir = _backend_dir.parent
+if (_backend_dir / ".env").exists():
+    load_dotenv(_backend_dir / ".env")
+elif (_root_dir / ".env").exists():
+    load_dotenv(_root_dir / ".env")
+else:
+    load_dotenv()
+
 from triage_engine import evaluate_triage, SymptomAssessmentInput, TriageResult, RED_FLAG_CATALOG
 from facilities_data import search_facilities, FACILITIES_DB
 from report_parser import parse_report_text, SAMPLE_REPORTS, ReportAnalysisResponse
@@ -23,10 +36,24 @@ app = FastAPI(
     description="Multilingual Voice-First Healthcare & Triage API for Bharat"
 )
 
-# Enable CORS for frontend Vite development & local network access
+# Configurable CORS for local Vite dev and production hosting
+cors_origins_env = os.getenv("CORS_ORIGINS", "").strip()
+allowed_origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
+]
+if cors_origins_env:
+    for origin in cors_origins_env.split(","):
+        o_clean = origin.strip().rstrip("/")
+        if o_clean and o_clean not in allowed_origins:
+            allowed_origins.append(o_clean)
+
+# Allow all origins in development or when explicitly configured
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins if cors_origins_env else ["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -48,7 +75,20 @@ def root():
 # 1. AI Health Saathi Chatbot Endpoint
 @app.post("/api/chat", response_model=ChatResponse)
 def chat_endpoint(request: ChatRequest):
-    return generate_saathi_response(request)
+    msg = request.message.strip()
+    if not msg:
+        raise HTTPException(status_code=400, detail="Message cannot be empty.")
+    if len(msg) > 2000:
+        raise HTTPException(status_code=400, detail="Message exceeds maximum limit of 2000 characters.")
+    
+    try:
+        return generate_saathi_response(request)
+    except Exception as e:
+        # Never leak internal credentials or stack traces
+        raise HTTPException(
+            status_code=500,
+            detail="Health assistant service encountered an error processing your query. Please try again."
+        )
 
 # 2. Symptom Triage Assessment Endpoint
 @app.post("/api/triage", response_model=TriageResult)

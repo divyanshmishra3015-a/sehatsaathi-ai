@@ -22,6 +22,9 @@ export interface ChatMessage {
   suggested_followups?: string[];
   triage_urgency?: 'RED' | 'YELLOW' | 'GREEN';
   timestamp: string;
+  provider?: 'openai' | 'fallback';
+  model?: string;
+  error?: boolean;
 }
 
 export interface TriageResult {
