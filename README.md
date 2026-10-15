@@ -7,7 +7,8 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org)
 [![Vite](https://img.shields.io/badge/Vite-8.3-646CFF?style=flat&logo=vite)](https://vite.dev)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.3-047857?style=flat&logo=tailwind-css)](https://tailwindcss.com)
-[![Deployment](https://img.shields.io/badge/Deploy-Vercel%20%7C%20Render%20%7C%20Localhost-success)](https://vercel.com)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdivyanshmishra3015-a%2Fsehatsaathi-ai)
+
 
 ---
 
